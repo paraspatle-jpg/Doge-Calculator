@@ -11,21 +11,23 @@ class Calculator {
     this.operation = undefined;
   }
   addNumber(number) {
-    this.currentOperand = number;
+    this.currentOperand = this.currentOperand + number.toString();
   }
-
+  delete() {
+    this.currentOperand = this.currentOperand.slice(0, -1);
+  }
   updateDisplay() {
-    this.currentOperandandTextElement.innerText = this.currentOperand;
+    this.currentOperandTextElement.innerText = this.currentOperand;
   }
 }
 
-const numberButtons = document.getElementsByClassName("numbers");
-const operationButtons = document.getElementsByClassName("operations");
-const allClearButton = document.getElementsByClassName("all-clear");
-const equalButton = document.getElementsByClassName("equals");
-const deleteButton = document.getElementsByClassName("delete");
-const previousOperandTextElement = document.getElementsByClassName("previous");
-const currentOperandTextElement = document.getElementsByClassName("current");
+const numberButtons = document.querySelectorAll(".numbers");
+const operationButtons = document.querySelectorAll(".operations");
+const allClearButton = document.querySelector(".all-clear");
+const equalButton = document.querySelector(".equals");
+const deleteButton = document.querySelector(".delete");
+const previousOperandTextElement = document.querySelector(".previous");
+const currentOperandTextElement = document.querySelector(".current");
 
 const cal = new Calculator(
   previousOperandTextElement,
@@ -37,4 +39,16 @@ numberButtons.forEach((button) => {
     cal.addNumber(button.innerText);
     cal.updateDisplay();
   });
+});
+deleteButton.addEventListener("click", () => {
+  cal.delete();
+  cal.updateDisplay();
+});
+
+allClearButton.addEventListener("click", () => {
+  cal.clear();
+  cal.updateDisplay();
+});
+operationButtons.addEventListener("click", () => {
+  cal.updateDisplay();
 });

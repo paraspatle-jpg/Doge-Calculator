@@ -21,7 +21,9 @@ body{
   background-color: rgba(0, 0, 0, .75);
   color:orangered;
 }
-
+.calculator-container>button:hover{
+  background-color: rgba(140, 136, 136, 0.892);
+}
 .zero{
   grid-column: span 2;
 }
