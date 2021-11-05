@@ -35,18 +35,21 @@ class Calculator {
     }
   }
 
-  /*calculateResult() {
-    let arr;
-    const str = "";
+  calculateResult() {
+    let arr = [];
+    let str = "";
     const temp = this.currentOperand;
-    temp.forEach((element) => {
-      if (element === " ") {
+    for (let i = 0; i < temp.length; i++) {
+      if (temp[i] === " ") {
         arr.push(Number(str));
         str = "";
+        i++;
       }
-      str = str + element;
-    });
-    const answer = arr[0];
+      str = str + temp[i];
+    }
+    arr.push(Number(str));
+    str = "";
+    let answer = arr[0];
     for (let i = 0; i < this.operationString.length; i++) {
       if (this.operationString[i] === "+") {
         answer = answer + arr[i + 1];
@@ -64,11 +67,16 @@ class Calculator {
         answer = answer % arr[i + 1];
       }
     }
-    this.currentOperand = arr.toString();
-  }*/
+    this.currentOperand = answer.toString();
+    this.operationString = "";
+  }
 
   updateDisplay() {
-    if (this.currentOperand[0] === "0" && this.currentOperand.length > 1) {
+    if (
+      this.currentOperand[0] === "0" &&
+      this.currentOperand[1] !== " " &&
+      this.currentOperand.length > 1
+    ) {
       this.currentOperand = this.currentOperand.substring(1);
     }
     this.currentOperandTextElement.innerText = this.currentOperand;
