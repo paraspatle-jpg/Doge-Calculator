@@ -79,7 +79,18 @@ class Calculator {
     ) {
       this.currentOperand = this.currentOperand.substring(1);
     }
-    this.currentOperandTextElement.innerText = this.currentOperand;
+    let element = this.currentOperand;
+    let j = 0;
+    for (let i = 0; i < this.currentOperand.length; i++) {
+      if (element[i] === " ") {
+        element =
+          element.substr(0, i) +
+          this.operationString[j] +
+          element.substr(i + 1);
+        j++;
+      }
+    }
+    this.currentOperandTextElement.innerText = element;
   }
 }
 
