@@ -19,6 +19,9 @@ class Calculator {
   }
 
   operator(action) {
+    if (this.currentOperand[this.currentOperand.length - 1] == " ") {
+      return;
+    }
     this.currentOperand = this.currentOperand + " ";
     this.operationString = this.operationString + action.toString();
   }
@@ -36,6 +39,12 @@ class Calculator {
   }
 
   calculateResult() {
+    if (this.currentOperand[this.currentOperand.length - 1] == " ") {
+      this.operationString = this.operationString.substr(
+        0,
+        this.operationString.length - 1
+      );
+    }
     let arr = [];
     let str = "";
     const temp = this.currentOperand;
